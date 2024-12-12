@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Api\TestimonialApiController;
 use App\Http\Controllers\Api\FeedbackApiController;
+use App\Http\Controllers\Api\ClientApiController;
+
 
 
 
@@ -23,6 +25,17 @@ Route::delete('/testimonial/{id}', [TestimonialApiController::class, 'delete_tes
 //feedbacks
 Route::get('/feedback', [FeedbackApiController::class, 'get_all_feedbacks']);
 Route::post('/feedback', [FeedbackApiController::class, 'store_feedbacks']);
+Route::get('/feedback/{id}', [FeedbackApiController::class, 'show_feedback']);
+Route::delete('/feedback/{id}', [FeedbackApiController::class, 'delete_feedback']);
+
+// clients
+Route::get('/clients', [ClientApiController::class, 'index']);
+Route::post('/clients', [ClientApiController::class, 'store']);
+Route::get('/client/{id}', [ClientApiController::class, 'show']);
+
+
+
+
 
 
 

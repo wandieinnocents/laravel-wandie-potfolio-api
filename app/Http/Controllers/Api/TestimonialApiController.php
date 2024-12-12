@@ -47,7 +47,7 @@ class TestimonialApiController extends Controller
             return ApiResponseHelper::jsonResponse( true, 200, "Testimonial Retrieved Successfully", $testimonial );
          }
          else { 
-            return ApiResponseHelper::jsonResponse( false, 404, "Oops, Tesimonial Not Found" );
+            return ApiResponseHelper::jsonResponse( false, 404, "Oops, Testimonial Not Found" );
          }
     }
 

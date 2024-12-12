@@ -23,7 +23,6 @@ class FeedbackApiController extends Controller
     }
 
 
-
     //store feedbacks
     public function store_feedbacks(Request $request){
         $feedback = new Feedback();
@@ -40,4 +39,31 @@ class FeedbackApiController extends Controller
         return ApiResponseHelper::jsonResponse( true, 200, "Feedback saved successfully", $feedback );
 
     }
+
+    // show feedback
+    public function show_feedback($id){
+
+        $feedback = Feedback::find($id);
+        if($feedback){
+           return ApiResponseHelper::jsonResponse( true, 200, "Feedback Retrieved Successfully", $feedback );
+        }
+        else { 
+           return ApiResponseHelper::jsonResponse( false, 404, "Oops, Feedback Not Found" );
+        }
+
+    }
+
+
+    //delete
+    public function delete_feedback($id){
+        if(Feedback::where("id", $id)->exists()){
+            $feedback =  Feedback::findOrFail($id);
+            $feedback->delete();
+            return ApiResponseHelper::jsonResponse( true, 200, "Feedback deleted successfully", $feedback );
+        } else{
+            return ApiResponseHelper::jsonResponse( false, 404, "No Feedback Found To delete" );
+        }
+    }
+
+
 }
