@@ -6,6 +6,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Api\TestimonialApiController;
 use App\Http\Controllers\Api\FeedbackApiController;
 use App\Http\Controllers\Api\ClientApiController;
+use App\Http\Controllers\Api\GeneralSettingApiController;
+use App\Http\Controllers\Api\SkillApiController;
+
 
 
 
@@ -32,6 +35,27 @@ Route::post('/clients', [ClientApiController::class, 'store']);
 Route::get('/client/{id}', [ClientApiController::class, 'show']);
 Route::put('/client/{id}', [ClientApiController::class, 'update']);
 Route::delete('/client/{id}', [ClientApiController::class, 'destroy']);
+
+//general settings
+Route::get('/general_settings', [GeneralSettingApiController::class, 'index']);
+Route::post('/general_settings', [GeneralSettingApiController::class, 'store']);
+Route::get('/general_settings/{id}', [GeneralSettingApiController::class, 'show']);
+Route::put('/general_settings/{id}', [GeneralSettingApiController::class, 'update']);
+Route::delete('/general_settings/{id}', [GeneralSettingApiController::class, 'destroy']);
+
+//skills
+Route::get('/skills', [SkillApiController::class, 'index']);
+Route::post('/skills', [SkillApiController::class, 'store']);
+Route::get('/skill/{id}', [SkillApiController::class, 'show']);
+Route::put('/skill/{id}', [SkillApiController::class, 'update']);
+Route::delete('/skill/{id}', [SkillApiController::class, 'destroy']);
+
+
+
+
+
+
+
 
 
 
