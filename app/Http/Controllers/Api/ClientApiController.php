@@ -72,9 +72,32 @@ class ClientApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        if(Client::where("id", $id)->exists()){
+            $client =  Client::findOrFail($id);
+            $client->client_name  = $request->client_name;
+            $client->created_by  = $request->created_by;
+            $client->updated_by  = $request->updated_by;
+    
+             // photo
+             if($request->hasfile('client_photo')){
+                $file               = $request->file('client_photo');
+                $extension          = $file->getClientOriginalExtension();  //get image extension
+                $filename           = time() . '.' .$extension;
+                $file->move('uploads/client_photos/',$filename);
+                $client->client_photo   = url('uploads' . '/client_photos/'  . $filename);
+            }
+    
+            else{
+                $client->client_photo = '';
+            }
+            $client->save();
+            return ApiResponseHelper::jsonResponse( true, 200, "Client updated successfully", $client );
+
+        } else{
+            return ApiResponseHelper::jsonResponse( false, 404, "No Client Found To Update" );
+        }
     }
 
     /**
@@ -82,6 +105,13 @@ class ClientApiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if(Client::where("id", $id)->exists()){
+            $client =  Client::findOrFail($id);
+            $client->delete();
+            return ApiResponseHelper::jsonResponse( true, 200, "Client deleted successfully" );
+        } else{
+            return ApiResponseHelper::jsonResponse( false, 404, "No Client Found To delete" );
+        }
+        
     }
 }

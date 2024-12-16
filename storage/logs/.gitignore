@@ -1,2 +1,4 @@
 *
 !.gitignore
+/storage/logs
+/public/uploads

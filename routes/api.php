@@ -9,8 +9,6 @@ use App\Http\Controllers\Api\ClientApiController;
 
 
 
-
-
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -32,6 +30,8 @@ Route::delete('/feedback/{id}', [FeedbackApiController::class, 'delete_feedback'
 Route::get('/clients', [ClientApiController::class, 'index']);
 Route::post('/clients', [ClientApiController::class, 'store']);
 Route::get('/client/{id}', [ClientApiController::class, 'show']);
+Route::put('/client/{id}', [ClientApiController::class, 'update']);
+Route::delete('/client/{id}', [ClientApiController::class, 'destroy']);
 
 
 
