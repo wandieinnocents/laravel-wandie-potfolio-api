@@ -8,11 +8,12 @@
 - Feedback
 - Clients
 - General Information
+- skills
+
 
 
 
 ## Pending Endpoints
-- skills
 - photo_portfolio_category
 - photo_portfolio
 - video_portfolio_category

@@ -43,7 +43,7 @@ class SkillApiController extends Controller
      */
     public function show(string $id)
     {
-        $skill = Skill::findOrFail($id);
+        $skill = Skill::find($id);
         if($skill){
            return ApiResponseHelper::jsonResponse( true, 200, "Skill Retrieved Successfully", $skill );
         }
